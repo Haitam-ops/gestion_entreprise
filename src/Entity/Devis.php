@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use app\Entity\Client;
+use App\Entity\Client;
 
 #[ORM\Entity(repositoryClass: DevisRepository::class)]
 class Devis
@@ -112,7 +112,6 @@ class Devis
     public function removeFacture(Facture $facture): static
     {
         if ($this->factures->removeElement($facture)) {
-            // set the owning side to null (unless already changed)
             if ($facture->getDevis() === $this) {
                 $facture->setDevis(null);
             }
@@ -120,4 +119,10 @@ class Devis
 
         return $this;
     }
+    
+    public function __toString(): string
+    {
+        return (string) $this->id;
+    }
+
 }

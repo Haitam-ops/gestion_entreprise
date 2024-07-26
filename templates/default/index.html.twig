@@ -1,17 +1,7 @@
-{# templates/default/index.html.twig #}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Homepage</title>
-</head>
-<body>
-    <h1>{{ message }}</h1>
-    <nav>
-        <ul>
-            <li><a href="{{ path('app_client_index') }}">Clients</a></li>
-            <li><a href="{{ path('app_devis_index') }}">Devis</a></li>
-            <li><a href="{{ path('app_facture_index') }}">Factures</a></li>
-        </ul>
-    </nav>
-</body>
-</html>
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <h1>Bienvenue sur la plateforme de gestion des factures et devis</h1>
+{% endblock %}

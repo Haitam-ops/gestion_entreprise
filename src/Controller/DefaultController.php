@@ -1,5 +1,5 @@
 <?php
-// src/Controller/DefaultController.php
+
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,7 +14,7 @@ class DefaultController extends AbstractController
     public function index(): Response
     {
         return $this->render('default/index.html.twig', [
-            'message' => 'Welcome to our Invoice and Quote Management Platform!',
+            'message' => 'Bienvenue fehad Management Platform des factures!',
         ]);
     }
 }

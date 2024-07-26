@@ -5,19 +5,16 @@ Encore
     .setOutputPath('public/build/')
     .setPublicPath('/build')
     .addEntry('app', './assets/app.js')
-    .enableVueLoader()
-    .enableSassLoader()
+    .enableStimulusBridge('./assets/controllers.json')
+    .splitEntryChunks()
+    .enableSingleRuntimeChunk()
+    .cleanupOutputBeforeBuild()
+    .enableBuildNotifications()
     .enableSourceMaps(!Encore.isProduction())
     .enableVersioning(Encore.isProduction())
-    .enableIntegrityHashes(Encore.isProduction())
-    .cleanupOutputBeforeBuild()
-    .configureFilenames({
-        js: '[name].[hash].js',
-        css: '[name].[hash].css',
+    .configureBabel((config) => {
+        config.plugins.push('@babel/plugin-proposal-class-properties');
     })
-    .addAliases({
-        '@': path.resolve(__dirname, 'assets'),
-    })
-    
+    .enableSassLoader();
 
 module.exports = Encore.getWebpackConfig();

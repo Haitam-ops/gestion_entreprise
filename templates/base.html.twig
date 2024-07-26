@@ -1,14 +1,34 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Gestion des Factures et Devis{% endblock %}</title>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+        <link rel="stylesheets" href="{{asset('styles/app.css')}}"
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ path('app_client_index') }}">Clients</a></li>
+                <li><a href="{{ path('app_devis_index') }}">Devis</a></li>
+                <li><a href="{{ path('app_facture_index') }}">Factures</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
         {% block body %}{% endblock %}
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </body>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Gestion des Factures et Devis</p>
+    </footer>
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</body>
 </html>

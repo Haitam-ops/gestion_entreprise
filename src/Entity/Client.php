@@ -109,12 +109,15 @@ class Client
     public function removeFacture(Facture $facture): static
     {
         if ($this->factures->removeElement($facture)) {
-            // set the owning side to null (unless already changed)
             if ($facture->getClient() === $this) {
                 $facture->setClient(null);
             }
         }
 
         return $this;
+    }
+    public function __toString(): string
+    {
+        return $this->name; 
     }
 }

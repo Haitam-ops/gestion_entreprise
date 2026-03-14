@@ -6,6 +6,7 @@ use App\Repository\ClientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ClientRepository::class)]
 class Client
@@ -16,15 +17,33 @@ class Client
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Name is required')]
+    #[Assert\Length(
+        min: 2,
+        max: 255,
+        minMessage: 'Name must be at least {{ limit }} characters long',
+        maxMessage: 'Name cannot be longer than {{ limit }} characters'
+    )]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Email is required')]
+    #[Assert\Email(message: 'Please enter a valid email address')]
+    #[Assert\Length(max: 255)]
     private ?string $email = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length(max: 255)]
     private ?string $address = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Phone is required')]
+    #[Assert\Length(
+        min: 8,
+        max: 255,
+        minMessage: 'Phone must be at least {{ limit }} characters long',
+        maxMessage: 'Phone cannot be longer than {{ limit }} characters'
+    )]
     private ?string $phone = null;
 
     #[ORM\OneToMany(targetEntity: Facture::class, mappedBy: 'client')]
